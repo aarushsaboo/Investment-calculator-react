@@ -27,16 +27,22 @@ export default function Result({
         <tbody>
           {annualData.map((unitData) => {
             return (
-              <tr key={unitData.year}>
-                <td>{unitData.year}</td>
-                <td>{unitData.valueEndOfYear}</td>
-                <td>{unitData.interest}</td>
+              <tr key={formatter.format(unitData.year)}>
+                <td>{formatter.format(unitData.year)}</td>
+                <td>{formatter.format(unitData.valueEndOfYear)}</td>
+                <td>{formatter.format(unitData.interest)}</td>
                 <td>
-                  {unitData.valueEndOfYear -
-                    initialInvestment -
-                    annualInvestment * unitData.year}
+                  {formatter.format(
+                    unitData.valueEndOfYear -
+                      initialInvestment -
+                      annualInvestment * unitData.year,
+                  )}
                 </td>
-                <td>{initialInvestment + annualInvestment * unitData.year}</td>
+                <td>
+                  {formatter.format(
+                    initialInvestment + annualInvestment * unitData.year,
+                  )}
+                </td>
               </tr>
             );
           })}
